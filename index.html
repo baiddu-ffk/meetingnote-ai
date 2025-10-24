@@ -55,6 +55,10 @@
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
         }
         
         .cta-button:hover {
@@ -189,6 +193,20 @@
             padding: 2rem 0;
         }
         
+        .social-proof {
+            background: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .logos {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            opacity: 0.7;
+        }
+        
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2rem;
@@ -196,6 +214,10 @@
             
             .hero p {
                 font-size: 1.1rem;
+            }
+            
+            .logos {
+                gap: 1rem;
             }
         }
     </style>
@@ -222,6 +244,19 @@
             </div>
             
             <a href="#waitlist" class="cta-button">Get Early Access</a>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="social-proof">
+        <div class="container">
+            <p style="color: #666; margin-bottom: 1rem;">Joining beta testers from:</p>
+            <div class="logos">
+                <span>🚀 StartupTech</span>
+                <span>💼 ConsultingCo</span>
+                <span>👥 RemoteTeam</span>
+                <span>🎯 ProjectX</span>
+            </div>
         </div>
     </section>
 
@@ -272,7 +307,7 @@
                     <li>✓ Priority support</li>
                 </ul>
                 
-                <a href="#waitlist" class="cta-button" style="background: white; color: #667eea;">Lock in Lifetime Price</a>
+                <a href="#waitlist" class="cta-button" style="background: white; color: #667eea; text-decoration: none;">Lock in Lifetime Price</a>
                 <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">Normal price: $49/month after launch</p>
             </div>
         </div>
@@ -285,11 +320,17 @@
             <p style="color: #666; margin-bottom: 2rem;">Get early access and lock in lifetime pricing</p>
             
             <div class="waitlist-form">
-                <form action="https://formsubmit.co/your-email@gmail.com" method="POST">
+                <form action="https://formsubmit.co/angikar.ahodi@gmail.com" method="POST">
                     <input type="email" name="email" placeholder="Enter your email" required>
-                    <input type="hidden" name="_subject" value="New MeetingNote.ai Beta Signup">
+                    
+                    <!-- FormSubmit Configuration -->
+                    <input type="hidden" name="_subject" value="🎯 NEW MeetingNote.ai Beta Signup - URGENT">
                     <input type="hidden" name="_captcha" value="false">
-                    <button type="submit" class="cta-button" style="width: 100%; border: none; cursor: pointer;">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="https://baiddu-ffk.github.io/meetingnote-ai/merci.html">
+                    <input type="text" name="_honey" style="display:none">
+                    
+                    <button type="submit" class="cta-button" style="width: 100%;">
                         Get Early Access
                     </button>
                 </form>
