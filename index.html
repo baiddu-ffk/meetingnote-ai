@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeetingNote.ai - Automated Meeting Summaries</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .cta-button {
+            background: #10B981;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        
+        .urgency-banner {
+            background: #FF4444;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 2rem auto;
+            max-width: 400px;
+            font-weight: bold;
+        }
+        
+        /* How it Works */
+        .how-it-works {
+            padding: 80px 0;
+            background: #f8fafc;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .step {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: bold;
+        }
+        
+        /* Pricing */
+        .pricing {
+            padding: 80px 0;
+            background: white;
+            text-align: center;
+        }
+        
+        .pricing-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 3rem;
+            border-radius: 16px;
+            max-width: 400px;
+            margin: 0 auto;
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+        
+        .features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+        
+        .features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        /* Waitlist Form */
+        .waitlist {
+            padding: 80px 0;
+            background: #f8fafc;
+            text-align: center;
+        }
+        
+        .waitlist-form {
+            max-width: 400px;
+            margin: 2rem auto;
+        }
+        
+        .waitlist-form input {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a202c;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">MeetingNote.ai</div>
+                <a href="#waitlist" class="cta-button">Get Early Access</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Stop Wasting Hours on Meeting Notes</h1>
+            <p>Upload any meeting recording → Get AI-powered summary + clear action items in 2 minutes</p>
+            
+            <div class="urgency-banner">
+                ⚠️ Only 18/50 Founder Spots Left - $19/month LIFETIME
+            </div>
+            
+            <a href="#waitlist" class="cta-button">Get Early Access</a>
+        </div>
+    </section>
+
+    <!-- How it Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 1rem;">How It Works</h2>
+            <p style="text-align: center; color: #666; max-width: 600px; margin: 0 auto;">Three simple steps to perfect meeting notes</p>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Upload Recording</h3>
+                    <p>Upload your Zoom, Teams, or Meet recording. Any audio/video file works.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>AI Magic Happens</h3>
+                    <p>Our AI analyzes the conversation and extracts key points automatically.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Get Summary & Actions</h3>
+                    <p>Receive a professional PDF with summary and clear action items.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing">
+        <div class="container">
+            <h2 style="margin-bottom: 1rem;">Founder's Deal</h2>
+            <p style="color: #666; margin-bottom: 3rem;">Limited time early bird pricing</p>
+            
+            <div class="pricing-card">
+                <h3>EARLY BIRD</h3>
+                <div class="price">$19<span style="font-size: 1rem;">/month</span></div>
+                <p style="opacity: 0.9;">LIFETIME PRICE - Limited to first 20 customers</p>
+                
+                <ul class="features">
+                    <li>✓ 100 meetings per month</li>
+                    <li>✓ AI-powered summaries</li>
+                    <li>✓ Action items with owners</li>
+                    <li>✓ Export to PDF</li>
+                    <li>✓ Priority support</li>
+                </ul>
+                
+                <a href="#waitlist" class="cta-button" style="background: white; color: #667eea;">Lock in Lifetime Price</a>
+                <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">Normal price: $49/month after launch</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Waitlist -->
+    <section class="waitlist" id="waitlist">
+        <div class="container">
+            <h2 style="margin-bottom: 1rem;">Join the Beta Waitlist</h2>
+            <p style="color: #666; margin-bottom: 2rem;">Get early access and lock in lifetime pricing</p>
+            
+            <div class="waitlist-form">
+                <form action="https://formsubmit.co/your-email@gmail.com" method="POST">
+                    <input type="email" name="email" placeholder="Enter your email" required>
+                    <input type="hidden" name="_subject" value="New MeetingNote.ai Beta Signup">
+                    <input type="hidden" name="_captcha" value="false">
+                    <button type="submit" class="cta-button" style="width: 100%; border: none; cursor: pointer;">
+                        Get Early Access
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 MeetingNote.ai - Built with ❤️ for productive teams</p>
+        </div>
+    </footer>
+</body>
+</html>
