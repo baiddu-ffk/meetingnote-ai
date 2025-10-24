@@ -3,221 +3,551 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MeetingNote.ai - Automated Meeting Summaries</title>
+    <title>MeetingNote.ai - AI-Powered Meeting Summaries & Action Items</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
-        
+
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #10B981;
+            --dark: #1F2937;
+            --light: #F9FAFB;
+            --gray: #6B7280;
+            --success: #059669;
+        }
+
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
-            line-height: 1.6;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.7;
+            overflow-x: hidden;
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
-        
+
         /* Header */
         header {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
-        
+
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
+            padding: 1.2rem 0;
         }
-        
+
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             font-size: 1.5rem;
-            font-weight: bold;
-            color: #667eea;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
         }
-        
+
+        .logo i {
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
         .cta-button {
-            background: #10B981;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
+            padding: 0.85rem 1.8rem;
+            border-radius: 12px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
-            display: inline-block;
-            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.3);
+            font-size: 0.95rem;
         }
-        
+
         .cta-button:hover {
-            background: #059669;
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px 0 rgba(99, 102, 241, 0.4);
         }
-        
+
+        .cta-button.secondary {
+            background: white;
+            color: var(--primary);
+            border: 1.5px solid var(--primary);
+            box-shadow: none;
+        }
+
+        .cta-button.secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
         /* Hero Section */
         .hero {
-            background: white;
-            padding: 120px 0 80px;
-            text-align: center;
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .hero p {
-            font-size: 1.25rem;
-            color: #666;
-            margin-bottom: 2rem;
-        }
-        
-        .urgency-banner {
-            background: #FF4444;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 160px 0 100px;
             color: white;
-            padding: 1rem;
-            border-radius: 8px;
-            margin: 2rem auto;
-            max-width: 400px;
-            font-weight: bold;
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.05"><polygon fill="white" points="0,1000 1000,0 1000,1000"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .urgency-banner {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 1.2rem 2rem;
+            border-radius: 16px;
+            margin: 2.5rem auto 0;
+            max-width: 500px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Social Proof */
+        .social-proof {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .social-proof p {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .logo-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--dark);
+            font-weight: 600;
+            padding: 1rem 1.5rem;
+            background: var(--light);
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-item:hover {
+            transform: translateY(-3px);
+        }
+
         /* How it Works */
         .how-it-works {
-            padding: 80px 0;
-            background: #f8fafc;
+            padding: 6rem 0;
+            background: var(--light);
         }
-        
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--gray);
+        }
+
         .steps {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
             margin-top: 3rem;
         }
-        
+
         .step {
-            text-align: center;
-            padding: 2rem;
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .step:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
         .step-number {
-            background: #667eea;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
-            width: 40px;
-            height: 40px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem;
-            font-weight: bold;
+            margin: 0 auto 1.5rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
         }
-        
+
+        .step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .step p {
+            color: var(--gray);
+            font-size: 1.05rem;
+        }
+
         /* Pricing */
         .pricing {
-            padding: 80px 0;
+            padding: 6rem 0;
             background: white;
-            text-align: center;
         }
-        
-        .pricing-card {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 3rem;
-            border-radius: 16px;
-            max-width: 400px;
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
             margin: 0 auto;
-            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
         }
-        
+
+        .pricing-card {
+            background: white;
+            padding: 3rem 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--secondary);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .pricing-card.featured .price {
+            color: white;
+        }
+
+        .pricing-card.featured .features li {
+            border-color: rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-8px);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .pricing-card.featured h3 {
+            color: white;
+        }
+
         .price {
-            font-size: 3rem;
-            font-weight: bold;
-            margin: 1rem 0;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin: 1.5rem 0;
+            color: var(--dark);
         }
-        
+
+        .price span {
+            font-size: 1.2rem;
+            font-weight: 500;
+            opacity: 0.8;
+        }
+
+        .pricing-note {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
         .features {
             list-style: none;
-            margin: 2rem 0;
+            margin: 2.5rem 0;
+            text-align: left;
         }
-        
+
         .features li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--dark);
         }
-        
-        /* Waitlist Form */
+
+        .features li i {
+            color: var(--success);
+            font-size: 1.1rem;
+        }
+
+        /* Waitlist */
         .waitlist {
-            padding: 80px 0;
-            background: #f8fafc;
-            text-align: center;
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #1F2937 0%, #374151 100%);
+            color: white;
         }
-        
+
+        .waitlist .section-header h2 {
+            color: white;
+        }
+
+        .waitlist .section-header p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
         .waitlist-form {
-            max-width: 400px;
-            margin: 2rem auto;
+            max-width: 500px;
+            margin: 3rem auto 0;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
         .waitlist-form input {
             width: 100%;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
+            padding: 1.2rem 1.5rem;
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
             font-size: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            transition: all 0.3s ease;
         }
-        
+
+        .waitlist-form input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .waitlist-form input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .waitlist-form button {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .form-note {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
         /* Footer */
         footer {
-            background: #1a202c;
+            background: var(--dark);
             color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
             text-align: center;
-            padding: 2rem 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
         }
-        
-        .social-proof {
-            background: white;
-            padding: 40px 0;
-            text-align: center;
-        }
-        
-        .logos {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            opacity: 0.7;
-        }
-        
+
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
             .hero p {
                 font-size: 1.1rem;
             }
             
-            .logos {
-                gap: 1rem;
+            .nav-links {
+                display: none;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+            
+            .pricing-card.featured:hover {
+                transform: translateY(-8px);
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-button {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
@@ -227,88 +557,146 @@
     <header>
         <div class="container">
             <nav>
-                <div class="logo">MeetingNote.ai</div>
-                <a href="#waitlist" class="cta-button">Get Early Access</a>
+                <a href="#" class="logo">
+                    <i class="fas fa-brain"></i>
+                    MeetingNote.ai
+                </a>
+                <div class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#waitlist" class="cta-button secondary">
+                        <i class="fas fa-arrow-right"></i>
+                        Early Access
+                    </a>
+                </div>
             </nav>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="home">
         <div class="container">
-            <h1>Stop Wasting Hours on Meeting Notes</h1>
-            <p>Upload any meeting recording → Get AI-powered summary + clear action items in 2 minutes</p>
-            
-            <div class="urgency-banner">
-                ⚠️ Only 18/50 Founder Spots Left - $19/month LIFETIME
+            <div class="hero-content">
+                <h1>Transform Meetings into Actionable Insights</h1>
+                <p>AI-powered meeting summaries, action items, and smart follow-ups. Save hours every week.</p>
+                
+                <div class="hero-buttons">
+                    <a href="#waitlist" class="cta-button">
+                        <i class="fas fa-rocket"></i>
+                        Get Early Access
+                    </a>
+                    <a href="#how-it-works" class="cta-button secondary">
+                        <i class="fas fa-play-circle"></i>
+                        See How It Works
+                    </a>
+                </div>
+                
+                <div class="urgency-banner">
+                    <i class="fas fa-bolt"></i>
+                    Limited: Only 22/50 Founder Spots Left - $19/month Lifetime
+                </div>
             </div>
-            
-            <a href="#waitlist" class="cta-button">Get Early Access</a>
         </div>
     </section>
 
     <!-- Social Proof -->
     <section class="social-proof">
         <div class="container">
-            <p style="color: #666; margin-bottom: 1rem;">Joining beta testers from:</p>
+            <p>Trusted by innovative teams from</p>
             <div class="logos">
-                <span>🚀 StartupTech</span>
-                <span>💼 ConsultingCo</span>
-                <span>👥 RemoteTeam</span>
-                <span>🎯 ProjectX</span>
+                <div class="logo-item">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Startup Inc</span>
+                </div>
+                <div class="logo-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Growth Labs</span>
+                </div>
+                <div class="logo-item">
+                    <i class="fas fa-users"></i>
+                    <span>TeamFlow</span>
+                </div>
+                <div class="logo-item">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>Innovate Co</span>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- How it Works -->
-    <section class="how-it-works">
+    <section class="how-it-works" id="how-it-works">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 1rem;">How It Works</h2>
-            <p style="text-align: center; color: #666; max-width: 600px; margin: 0 auto;">Three simple steps to perfect meeting notes</p>
+            <div class="section-header">
+                <h2>How MeetingNote.ai Works</h2>
+                <p>Three simple steps to transform your meeting productivity</p>
+            </div>
             
             <div class="steps">
                 <div class="step">
                     <div class="step-number">1</div>
-                    <h3>Upload Recording</h3>
-                    <p>Upload your Zoom, Teams, or Meet recording. Any audio/video file works.</p>
+                    <h3>Upload Your Meeting</h3>
+                    <p>Simply upload any recording from Zoom, Teams, Meet, or any audio/video file. Our AI handles the rest.</p>
                 </div>
                 
                 <div class="step">
                     <div class="step-number">2</div>
-                    <h3>AI Magic Happens</h3>
-                    <p>Our AI analyzes the conversation and extracts key points automatically.</p>
+                    <h3>AI Magic in Action</h3>
+                    <p>Our advanced AI analyzes conversations, identifies key points, and extracts actionable insights automatically.</p>
                 </div>
                 
                 <div class="step">
                     <div class="step-number">3</div>
-                    <h3>Get Summary & Actions</h3>
-                    <p>Receive a professional PDF with summary and clear action items.</p>
+                    <h3>Get Smart Summary</h3>
+                    <p>Receive a beautifully formatted PDF with executive summary, action items, and key decisions—ready to share.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Pricing -->
-    <section class="pricing">
+    <section class="pricing" id="pricing">
         <div class="container">
-            <h2 style="margin-bottom: 1rem;">Founder's Deal</h2>
-            <p style="color: #666; margin-bottom: 3rem;">Limited time early bird pricing</p>
+            <div class="section-header">
+                <h2>Simple, Transparent Pricing</h2>
+                <p>Start for free, upgrade as you grow. No hidden fees.</p>
+            </div>
             
-            <div class="pricing-card">
-                <h3>EARLY BIRD</h3>
-                <div class="price">$19<span style="font-size: 1rem;">/month</span></div>
-                <p style="opacity: 0.9;">LIFETIME PRICE - Limited to first 20 customers</p>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Early Bird</h3>
+                    <div class="price">$19<span>/month</span></div>
+                    <p class="pricing-note">Lifetime pricing for our founding customers</p>
+                    
+                    <ul class="features">
+                        <li><i class="fas fa-check"></i> 100 meetings per month</li>
+                        <li><i class="fas fa-check"></i> AI-powered summaries</li>
+                        <li><i class="fas fa-check"></i> Action items with owners</li>
+                        <li><i class="fas fa-check"></i> Export to PDF & Word</li>
+                        <li><i class="fas fa-check"></i> Email support</li>
+                    </ul>
+                    
+                    <a href="#waitlist" class="cta-button secondary">Get Started</a>
+                </div>
                 
-                <ul class="features">
-                    <li>✓ 100 meetings per month</li>
-                    <li>✓ AI-powered summaries</li>
-                    <li>✓ Action items with owners</li>
-                    <li>✓ Export to PDF</li>
-                    <li>✓ Priority support</li>
-                </ul>
-                
-                <a href="#waitlist" class="cta-button" style="background: white; color: #667eea; text-decoration: none;">Lock in Lifetime Price</a>
-                <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">Normal price: $49/month after launch</p>
+                <div class="pricing-card featured">
+                    <h3>Founder's Deal</h3>
+                    <div class="price">$19<span>/month</span></div>
+                    <p class="pricing-note">Limited time - Lock in lifetime pricing</p>
+                    
+                    <ul class="features">
+                        <li><i class="fas fa-check"></i> <strong>Everything in Early Bird</strong></li>
+                        <li><i class="fas fa-check"></i> Unlimited meetings</li>
+                        <li><i class="fas fa-check"></i> Advanced AI analysis</li>
+                        <li><i class="fas fa-check"></i> Team collaboration</li>
+                        <li><i class="fas fa-check"></i> Priority support</li>
+                        <li><i class="fas fa-check"></i> Custom templates</li>
+                    </ul>
+                    
+                    <a href="#waitlist" class="cta-button">Lock Lifetime Price</a>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.9;">Normal price: $49/month after launch</p>
+                </div>
             </div>
         </div>
     </section>
@@ -316,24 +704,34 @@
     <!-- Waitlist -->
     <section class="waitlist" id="waitlist">
         <div class="container">
-            <h2 style="margin-bottom: 1rem;">Join the Beta Waitlist</h2>
-            <p style="color: #666; margin-bottom: 2rem;">Get early access and lock in lifetime pricing</p>
+            <div class="section-header">
+                <h2>Join the Exclusive Beta</h2>
+                <p>Be among the first to experience AI-powered meeting productivity</p>
+            </div>
             
             <div class="waitlist-form">
                 <form action="https://formsubmit.co/angikar.ahodi@gmail.com" method="POST">
-                    <input type="email" name="email" placeholder="Enter your email" required>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Enter your work email" required>
+                    </div>
                     
                     <!-- FormSubmit Configuration -->
-                    <input type="hidden" name="_subject" value="🎯 NEW MeetingNote.ai Beta Signup - URGENT">
+                    <input type="hidden" name="_subject" value="🎯 URGENT: New MeetingNote.ai Beta Signup">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_next" value="https://baiddu-ffk.github.io/meetingnote-ai/merci.html">
+                    <input type="hidden" name="_next" value="https://baidu-ffk.github.io/meetingnote-ai/merci.html">
                     <input type="text" name="_honey" style="display:none">
                     
-                    <button type="submit" class="cta-button" style="width: 100%;">
-                        Get Early Access
+                    <button type="submit" class="cta-button">
+                        <i class="fas fa-lock"></i>
+                        Lock in Lifetime Pricing
                     </button>
                 </form>
+                
+                <p class="form-note">
+                    <i class="fas fa-shield-alt"></i>
+                    Your email is safe with us. No spam, ever.
+                </p>
             </div>
         </div>
     </section>
@@ -341,7 +739,44 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2024 MeetingNote.ai - Built with ❤️ for productive teams</p>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>MeetingNote.ai</h4>
+                    <p style="color: rgba(255,255,255,0.7); margin-bottom: 1.5rem;">Transforming meetings into actionable insights with AI.</p>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-product-hunt"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Product</h4>
+                    <a href="#features">Features</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#waitlist">Early Access</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <a href="#">About</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Contact</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 MeetingNote.ai. All rights reserved. Built with ❤️ for productive teams worldwide.</p>
+            </div>
         </div>
     </footer>
 </body>
