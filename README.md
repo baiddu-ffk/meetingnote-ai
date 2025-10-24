@@ -7,7 +7,7 @@
 
 ## 🚀 Live Demo
 
-**👉 [Visit Landing Page](https://ton-username.github.io/meetingnote-ai/)**
+**👉 [Visit Landing Page](https://baiddu-ffk.github.io/meetingnote-ai/)**
 
 ## 💡 The Problem
 
