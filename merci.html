@@ -1,33 +1,575 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Thank You!</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to MeetingNote.ai Beta - Confirmation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            text-align: center; 
-            padding: 50px; 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #10B981;
+            --accent: #F59E0B;
+            --dark: #1F2937;
+            --light: #F9FAFB;
+            --gray: #6B7280;
+        }
+
+        body {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        .container {
-            background: white;
             color: #333;
-            padding: 40px;
-            border-radius: 10px;
-            max-width: 500px;
-            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
         }
-        .success { color: #10B981; font-size: 3rem; margin-bottom: 1rem; }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.03"><polygon fill="white" points="0,1000 1000,0 1000,1000"/></svg>');
+            background-size: cover;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .thank-you-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 5rem 4rem;
+            border-radius: 28px;
+            text-align: center;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .thank-you-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+        }
+
+        .success-animation {
+            position: relative;
+            margin: 0 auto 3rem;
+            width: 120px;
+            height: 120px;
+        }
+
+        .success-circle {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--secondary), #059669);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        .success-icon {
+            color: white;
+            font-size: 3.5rem;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .confirmation-badge {
+            background: linear-gradient(135deg, var(--accent), #F59E0B);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px rgba(245, 158, 11, 0.3);
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: var(--gray);
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .priority-access {
+            background: linear-gradient(135deg, #1F2937, #374151);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 3rem 0;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .priority-access::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--secondary));
+        }
+
+        .priority-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        .priority-header i {
+            color: var(--accent);
+            font-size: 2rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .benefit-icon {
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+        }
+
+        .benefit-content h4 {
+            color: white;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .benefit-content p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .urgency-card {
+            background: linear-gradient(135deg, #DC2626, #B91C1C);
+            color: white;
+            padding: 2rem;
+            border-radius: 16px;
+            margin: 2.5rem 0;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .urgency-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .spot-counter {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .cta-section {
+            margin: 3rem 0;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1.4rem 3rem;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 12px 35px rgba(99, 102, 241, 0.4);
+            font-size: 1.2rem;
+            margin: 1rem 0;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 40px rgba(99, 102, 241, 0.5);
+        }
+
+        .guarantee-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-top: 1.5rem;
+        }
+
+        .next-steps {
+            background: var(--light);
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 3rem 0;
+            text-align: left;
+        }
+
+        .steps-timeline {
+            position: relative;
+            margin-left: 30px;
+        }
+
+        .steps-timeline::before {
+            content: '';
+            position: absolute;
+            left: -25px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary);
+            opacity: 0.3;
+        }
+
+        .step {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-marker {
+            position: absolute;
+            left: -35px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+
+        .step-content h4 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .step-content p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--gray);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .thank-you-card {
+                padding: 3rem 2rem;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .priority-access {
+                padding: 2rem 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="success">✅</div>
-        <h1>Thank You!</h1>
-        <p>You're on the beta list for MeetingNote.ai</p>
-        <p>We'll contact you within 24 hours.</p>
-        <a href="index.html">← Back to Homepage</a>
+        <div class="thank-you-card">
+            <!-- Animation de succès -->
+            <div class="success-animation">
+                <div class="success-circle">
+                    <i class="fas fa-check success-icon"></i>
+                </div>
+            </div>
+
+            <!-- Badge de confirmation -->
+            <div class="confirmation-badge">
+                <i class="fas fa-star"></i>
+                FOUNDING MEMBER CONFIRMED
+            </div>
+
+            <!-- Titre principal -->
+            <h1>Welcome to the Inner Circle</h1>
+            <p class="subtitle">
+                You're now part of an exclusive group shaping the future of meeting productivity. 
+                Your journey to effortless meeting management starts here.
+            </p>
+
+            <!-- Carte d'accès prioritaire -->
+            <div class="priority-access">
+                <div class="priority-header">
+                    <i class="fas fa-crown"></i>
+                    <div>
+                        <h3 style="color: white; margin: 0;">Priority Founder Access</h3>
+                        <p style="color: rgba(255,255,255,0.8); margin: 0;">Special privileges unlocked</p>
+                    </div>
+                </div>
+
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Lifetime Pricing</h4>
+                            <p>Locked at $19/month forever, regardless of future price increases</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Priority Onboarding</h4>
+                            <p>Jump the queue and get setup within 24 hours of launch</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Direct Support</h4>
+                            <p>Access to our founding team for personalized assistance</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h4>Feature Influence</h4>
+                            <p>Your feedback directly shapes our product roadmap</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Urgence -->
+            <div class="urgency-card">
+                <div class="urgency-content">
+                    <i class="fas fa-bolt" style="font-size: 2rem;"></i>
+                    <div>
+                        <h3 style="color: white; margin: 0 0 0.5rem 0;">Limited Founder Spots</h3>
+                        <p style="color: rgba(255,255,255,0.9); margin: 0;">Your exclusive pricing is reserved for 48 hours</p>
+                    </div>
+                    <div class="spot-counter">
+                        <i class="fas fa-users"></i>
+                        18/50 Spots Left
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section CTA -->
+            <div class="cta-section">
+                <a href="https://buy.stripe.com/ton-lien-stripe" class="cta-button">
+                    <i class="fas fa-lock"></i>
+                    Secure My Founder Benefits
+                </a>
+                
+                <div class="guarantee-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    30-day money-back guarantee • No commitment
+                </div>
+            </div>
+
+            <!-- Prochaines étapes -->
+            <div class="next-steps">
+                <h3 style="text-align: center; margin-bottom: 2.5rem; color: var(--dark);">
+                    <i class="fas fa-map-signs"></i>
+                    Your Onboarding Journey
+                </h3>
+                
+                <div class="steps-timeline">
+                    <div class="step">
+                        <div class="step-marker"></div>
+                        <div class="step-content">
+                            <h4>Immediate Confirmation</h4>
+                            <p>Check your inbox for a welcome email with your unique founder ID and next steps</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-marker"></div>
+                        <div class="step-content">
+                            <h4>Platform Access</h4>
+                            <p>Receive your login credentials within 24 hours as we onboard founding members</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-marker"></div>
+                        <div class="step-content">
+                            <h4>First Meeting Analysis</h4>
+                            <p>Upload your first meeting recording and experience the AI magic in action</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-marker"></div>
+                        <div class="step-content">
+                            <h4>Founder Feedback Session</h4>
+                            <p>Schedule a 1:1 call with our team to share your experience and suggestions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Liens footer -->
+            <div class="footer-links">
+                <a href="index.html" class="footer-link">
+                    <i class="fas fa-home"></i>
+                    Back to Homepage
+                </a>
+                <a href="mailto:support@meetingnote.ai" class="footer-link">
+                    <i class="fas fa-envelope"></i>
+                    Contact Support
+                </a>
+                <a href="#" class="footer-link">
+                    <i class="fas fa-file-alt"></i>
+                    Terms & Privacy
+                </a>
+            </div>
+        </div>
     </div>
+
+    <script>
+        // Animation d'entrée élégante
+        document.addEventListener('DOMContentLoaded', function() {
+            const card = document.querySelector('.thank-you-card');
+            const elements = card.querySelectorAll('*');
+            
+            // Reset pour animation
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(40px) scale(0.95)';
+            
+            // Animation principale
+            setTimeout(() => {
+                card.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0) scale(1)';
+            }, 200);
+
+            // Animation des éléments enfants
+            elements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    el.style.transition = 'all 0.6s ease';
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 400 + (index * 100));
+            });
+        });
+    </script>
 </body>
 </html>
