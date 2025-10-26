@@ -1,31 +1,349 @@
-<!-- Ajouter cette section après la grille de statistiques -->
-<section class="ai-insights-section">
-    <h2>📊 Insights IA</h2>
-    <div class="insights-grid">
-        <div class="insight-card">
-            <div class="insight-header">
-                <i class="fas fa-chart-line"></i>
-                <h3>Productivité</h3>
-            </div>
-            <div class="insight-content">
-                <p>Vos réunions sont <strong>27% plus efficaces</strong> que la moyenne</p>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 75%"></div>
-                </div>
-            </div>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeetingNote.ai - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Barre de navigation -->
+    <nav class="app-nav">
+        <div class="nav-brand">
+            <i class="fas fa-robot"></i>
+            <span>MeetingNote.ai</span>
         </div>
         
-        <div class="insight-card">
-            <div class="insight-header">
-                <i class="fas fa-bullseye"></i>
-                <h3>Objectifs</h3>
+        <div class="nav-links">
+            <a href="#" class="nav-link active">
+                <i class="fas fa-home"></i>
+                Dashboard
+            </a>
+            <a href="#" class="nav-link">
+                <i class="fas fa-history"></i>
+                Historique
+            </a>
+            <a href="#" class="nav-link">
+                <i class="fas fa-cog"></i>
+                Paramètres
+            </a>
+        </div>
+        
+        <div class="nav-user">
+            <img src="https://ui-avatars.com/api/?name=User&background=6366F1&color=fff" alt="User" class="user-avatar">
+            <span class="user-name">John Doe</span>
+        </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <main class="app-container">
+        <!-- En-tête -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1>Tableau de Bord</h1>
+                <p>Bienvenue dans votre espace de travail intelligent</p>
             </div>
-            <div class="insight-content">
-                <p><strong>83% des actions</strong> sont complétées à temps</p>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 83%"></div>
+            <button class="btn-primary">
+                <i class="fas fa-plus"></i>
+                Nouvelle Réunion
+            </button>
+        </header>
+
+        <!-- Statistiques -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>12</h3>
+                    <p>Réunions cette semaine</p>
+                    <span class="stat-trend positive">+3 vs semaine dernière</span>
                 </div>
             </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>8h 42m</h3>
+                    <p>Temps économisé</p>
+                    <span class="stat-trend positive">+2h 15m</span>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>47</h3>
+                    <p>Actions identifiées</p>
+                    <span class="stat-trend positive">87% complétées</span>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>94%</h3>
+                    <p>Précision IA</p>
+                    <span class="stat-trend positive">+2% ce mois</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Insights IA -->
+        <section class="ai-insights-section">
+            <div class="section-header">
+                <h2><i class="fas fa-brain"></i> Insights IA</h2>
+                <span class="section-badge">Nouveau</span>
+            </div>
+            
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <div class="insight-header">
+                        <i class="fas fa-chart-pie"></i>
+                        <h3>Répartition du Temps</h3>
+                    </div>
+                    <div class="insight-content">
+                        <p><strong>62% de vos réunions</strong> sont productives</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 62%"></div>
+                        </div>
+                        <div class="insight-detail">
+                            <span>Moyenne secteur: 45%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="insight-card">
+                    <div class="insight-header">
+                        <i class="fas fa-bullseye"></i>
+                        <h3>Taux de Réussite</h3>
+                    </div>
+                    <div class="insight-content">
+                        <p><strong>83% des actions</strong> sont complétées à temps</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 83%"></div>
+                        </div>
+                        <div class="insight-detail">
+                            <span>⭐ Meilleur que 92% des équipes</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="insight-card">
+                    <div class="insight-header">
+                        <i class="fas fa-users"></i>
+                        <h3>Engagement Équipe</h3>
+                    </div>
+                    <div class="insight-content">
+                        <p><strong>76% de participation</strong> dans les décisions</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 76%"></div>
+                        </div>
+                        <div class="insight-detail">
+                            <span>+12% vs dernier trimestre</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Réunions récentes -->
+        <section class="meetings-section">
+            <div class="section-header">
+                <h2><i class="fas fa-history"></i> Réunions Récentes</h2>
+                <a href="#" class="view-all">Voir tout <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="meetings-list">
+                <!-- Réunion 1 -->
+                <div class="meeting-card">
+                    <div class="meeting-header">
+                        <div class="meeting-platform">
+                            <i class="fab fa-zoom"></i>
+                            Zoom
+                        </div>
+                        <div class="meeting-status status-active">
+                            <i class="fas fa-circle"></i>
+                            Terminée
+                        </div>
+                    </div>
+                    
+                    <h3 class="meeting-title">Revue de projet Q3 - Objectifs et Planning</h3>
+                    <p class="meeting-description">Discussion sur les livrables du trimestre et ajustement des délais</p>
+                    
+                    <div class="meeting-meta">
+                        <span class="meeting-date">
+                            <i class="far fa-calendar"></i>
+                            Aujourd'hui, 10:00-11:30
+                        </span>
+                        <span class="meeting-duration">
+                            <i class="far fa-clock"></i>
+                            1h 30m
+                        </span>
+                    </div>
+                    
+                    <div class="meeting-actions">
+                        <button class="btn-outline">
+                            <i class="fas fa-play"></i>
+                            Réécouter
+                        </button>
+                        <button class="btn-primary">
+                            <i class="fas fa-file-alt"></i>
+                            Voir le résumé
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Réunion 2 -->
+                <div class="meeting-card">
+                    <div class="meeting-header">
+                        <div class="meeting-platform">
+                            <i class="fab fa-microsoft"></i>
+                            Teams
+                        </div>
+                        <div class="meeting-status status-active">
+                            <i class="fas fa-circle"></i>
+                            Terminée
+                        </div>
+                    </div>
+                    
+                    <h3 class="meeting-title">Réunion équipe marketing - Lancement campagne</h3>
+                    <p class="meeting-description">Présentation de la nouvelle campagne publicitaire et répartition des tâches</p>
+                    
+                    <div class="meeting-meta">
+                        <span class="meeting-date">
+                            <i class="far fa-calendar"></i>
+                            Hier, 14:30-15:45
+                        </span>
+                        <span class="meeting-duration">
+                            <i class="far fa-clock"></i>
+                            1h 15m
+                        </span>
+                    </div>
+                    
+                    <div class="meeting-actions">
+                        <button class="btn-outline">
+                            <i class="fas fa-play"></i>
+                            Réécouter
+                        </button>
+                        <button class="btn-primary">
+                            <i class="fas fa-file-alt"></i>
+                            Voir le résumé
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Réunion 3 -->
+                <div class="meeting-card">
+                    <div class="meeting-header">
+                        <div class="meeting-platform">
+                            <i class="fab fa-google"></i>
+                            Google Meet
+                        </div>
+                        <div class="meeting-status status-pending">
+                            <i class="fas fa-circle"></i>
+                            Transcription en cours
+                        </div>
+                    </div>
+                    
+                    <h3 class="meeting-title">Point client - Projet Innovation</h3>
+                    <p class="meeting-description">Présentation des avancées et validation des prochaines étapes</p>
+                    
+                    <div class="meeting-meta">
+                        <span class="meeting-date">
+                            <i class="far fa-calendar"></i>
+                            Il y a 2 heures
+                        </span>
+                        <span class="meeting-duration">
+                            <i class="far fa-clock"></i>
+                            45m
+                        </span>
+                    </div>
+                    
+                    <div class="meeting-actions">
+                        <button class="btn-outline" disabled>
+                            <i class="fas fa-sync fa-spin"></i>
+                            Traitement...
+                        </button>
+                        <button class="btn-primary" disabled>
+                            <i class="fas fa-hourglass-half"></i>
+                            Bientôt disponible
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Démarrer une nouvelle réunion -->
+        <section class="new-meeting-section">
+            <div class="section-header">
+                <h2><i class="fas fa-rocket"></i> Démarrer une Nouvelle Réunion</h2>
+                <p>Connectez vos plateformes et commencez à automatiser vos comptes-rendus</p>
+            </div>
+            
+            <div class="platform-options">
+                <div class="platform-card">
+                    <div class="platform-icon">
+                        <i class="fab fa-zoom"></i>
+                    </div>
+                    <h3>Zoom</h3>
+                    <p>Intégration automatique avec votre compte Zoom</p>
+                    <button class="btn-primary" onclick="connectPlatform('Zoom')">
+                        <i class="fas fa-plug"></i>
+                        Connecter
+                    </button>
+                </div>
+                
+                <div class="platform-card">
+                    <div class="platform-icon">
+                        <i class="fab fa-microsoft"></i>
+                    </div>
+                    <h3>Microsoft Teams</h3>
+                    <p>Synchronisation avec Microsoft 365</p>
+                    <button class="btn-primary" onclick="connectPlatform('Microsoft Teams')">
+                        <i class="fas fa-plug"></i>
+                        Connecter
+                    </button>
+                </div>
+                
+                <div class="platform-card">
+                    <div class="platform-icon">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <h3>Google Meet</h3>
+                    <p>Intégration Google Workspace</p>
+                    <button class="btn-primary" onclick="connectPlatform('Google Meet')">
+                        <i class="fas fa-plug"></i>
+                        Connecter
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bannière de productivité -->
+        <div class="productivity-banner">
+            <div class="banner-content">
+                <i class="fas fa-trophy"></i>
+                <div class="banner-text">
+                    <h3>Productivité exceptionnelle !</h3>
+                    <p>Vous avez économisé 12 heures ce mois-ci grâce à MeetingNote.ai</p>
+                </div>
+            </div>
+            <button class="btn-outline">
+                Voir le rapport détaillé
+            </button>
         </div>
-    </div>
-</section>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
