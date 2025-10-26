@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeetingNote.ai - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Barre de navigation -->
+    <nav class="app-nav">
+        <div class="nav-brand">
+            <i class="fas fa-robot"></i>
+            <span>MeetingNote.ai</span>
+        </div>
+        
+        <div class="nav-links">
+            <a href="#" class="nav-link active">
+                <i class="fas fa-home"></i>
+                Dashboard
+            </a>
+            <a href="#" class="nav-link">
+                <i class="fas fa-history"></i>
+                Historique
+            </a>
+            <a href="#" class="nav-link">
+                <i class="fas fa-cog"></i>
+                Paramètres
+            </a>
+        </div>
+        
+        <div class="nav-user">
+            <img src="https://ui-avatars.com/api/?name=User&background=2563eb&color=fff" alt="User" class="user-avatar">
+            <span class="user-name">John Doe</span>
+        </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <main class="app-container">
+        <!-- En-tête -->
+        <header class="app-header">
+            <h1>Tableau de Bord</h1>
+            <button class="btn-primary">
+                <i class="fas fa-plus"></i>
+                Nouvelle Réunion
+            </button>
+        </header>
+
+        <!-- Statistiques -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>12</h3>
+                    <p>Réunions cette semaine</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>8h 42m</h3>
+                    <p>Temps économisé</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>47</h3>
+                    <p>Actions identifiées</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Réunions récentes -->
+        <section class="meetings-section">
+            <h2>Réunions Récentes</h2>
+            
+            <div class="meetings-list">
+                <!-- Réunion 1 -->
+                <div class="meeting-card">
+                    <div class="meeting-header">
+                        <div class="meeting-platform">
+                            <i class="fab fa-zoom"></i>
+                            Zoom
+                        </div>
+                        <div class="meeting-date">
+                            Aujourd'hui, 10:00
+                        </div>
+                    </div>
+                    
+                    <h3 class="meeting-title">Revue de projet Q3</h3>
+                    
+                    <div class="meeting-actions">
+                        <button class="btn-outline">
+                            <i class="fas fa-play"></i>
+                            Rejouer
+                        </button>
+                        <button class="btn-primary">
+                            <i class="fas fa-file-alt"></i>
+                            Voir le résumé
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Réunion 2 -->
+                <div class="meeting-card">
+                    <div class="meeting-header">
+                        <div class="meeting-platform">
+                            <i class="fab fa-microsoft"></i>
+                            Teams
+                        </div>
+                        <div class="meeting-date">
+                            Hier, 14:30
+                        </div>
+                    </div>
+                    
+                    <h3 class="meeting-title">Réunion équipe marketing</h3>
+                    
+                    <div class="meeting-actions">
+                        <button class="btn-outline">
+                            <i class="fas fa-play"></i>
+                            Rejouer
+                        </button>
+                        <button class="btn-primary">
+                            <i class="fas fa-file-alt"></i>
+                            Voir le résumé
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Démarrer une nouvelle réunion -->
+        <section class="new-meeting-section">
+            <h2>Démarrer une Nouvelle Réunion</h2>
+            
+            <div class="platform-options">
+                <div class="platform-card">
+                    <i class="fab fa-zoom"></i>
+                    <h3>Zoom</h3>
+                    <p>Connectez votre compte Zoom</p>
+                    <button class="btn-primary">Connecter</button>
+                </div>
+                
+                <div class="platform-card">
+                    <i class="fab fa-microsoft"></i>
+                    <h3>Microsoft Teams</h3>
+                    <p>Connectez votre compte Teams</p>
+                    <button class="btn-primary">Connecter</button>
+                </div>
+                
+                <div class="platform-card">
+                    <i class="fab fa-google"></i>
+                    <h3>Google Meet</h3>
+                    <p>Connectez votre compte Google</p>
+                    <button class="btn-primary">Connecter</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
